@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0
+## Unreleased
 
 - Bump minimal Laravel version to 8.x
 - Bump minimal PHP version to 8.x
