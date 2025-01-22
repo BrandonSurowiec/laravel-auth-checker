@@ -4,6 +4,7 @@ namespace Lab404\Tests;
 
 use Lab404\AuthChecker\AuthCheckerServiceProvider;
 use Lab404\Tests\Stubs\Models\User;
+use Orchestra\Database\ConsoleServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -51,6 +52,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
+            ConsoleServiceProvider::class,
             AuthCheckerServiceProvider::class,
         ];
     }
