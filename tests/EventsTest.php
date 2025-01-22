@@ -13,7 +13,6 @@ use Lab404\AuthChecker\Events\FailedAuth;
 use Lab404\AuthChecker\Events\LockoutAuth;
 use Lab404\AuthChecker\Services\AuthChecker;
 use Lab404\Tests\Stubs\Models\User;
-use PHPUnit\Framework\Attributes\Test;
 
 class EventsTest extends TestCase
 {
@@ -30,13 +29,13 @@ class EventsTest extends TestCase
         $this->dispatcher = $this->app['events'];
     }
 
-    #[Test]
+    /** @test */
     public function it_registers_listeners()
     {
         $this->assertTrue($this->dispatcher->hasListeners(Login::class));
     }
 
-    #[Test]
+    /** @test */
     public function it_registers_login_and_device_on_new_autentication()
     {
         /** @var Agent $agent */
@@ -57,7 +56,7 @@ class EventsTest extends TestCase
         $this->assertEquals('Chrome', $device->browser);
     }
 
-    #[Test]
+    /** @test */
     public function it_creates_failed_login()
     {
         $user = User::first();
@@ -68,7 +67,7 @@ class EventsTest extends TestCase
         $this->assertEquals(1, $user->logins()->count());
     }
 
-    #[Test]
+    /** @test */
     public function it_creates_lockouts_login()
     {
         $user = User::first();
@@ -81,7 +80,7 @@ class EventsTest extends TestCase
         $this->assertEquals(1, $user->logins()->count());
     }
 
-    #[Test]
+    /** @test */
     public function it_fires_failed_auth_event()
     {
         Event::fake();
@@ -95,7 +94,7 @@ class EventsTest extends TestCase
         });
     }
 
-    #[Test]
+    /** @test */
     public function it_fires_lockout_auth_event()
     {
         Event::fake();

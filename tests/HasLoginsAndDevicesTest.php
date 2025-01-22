@@ -9,7 +9,6 @@ use Lab404\AuthChecker\Models\Login;
 use Lab404\Tests\Stubs\Models\CustomDevice;
 use Lab404\Tests\Stubs\Models\CustomLogin;
 use Lab404\Tests\Stubs\Models\User;
-use PHPUnit\Framework\Attributes\Test;
 
 class HasLoginsAndDevicesTest extends TestCase
 {
@@ -26,7 +25,7 @@ class HasLoginsAndDevicesTest extends TestCase
         $this->config = $this->app->make('config');
     }
 
-    #[Test]
+    /** @test */
     public function it_can_access_logins()
     {
         $user = User::first();
@@ -44,7 +43,7 @@ class HasLoginsAndDevicesTest extends TestCase
         $this->assertEquals(1, $user->lockouts()->count());
     }
 
-    #[Test]
+    /** @test */
     public function it_can_access_logins_with_custom_models()
     {
         $this->config->set('auth-checker.models.login', CustomLogin::class);
@@ -64,7 +63,7 @@ class HasLoginsAndDevicesTest extends TestCase
         $this->config->set('auth-checker.models.login', null);
     }
 
-    #[Test]
+    /** @test */
     public function it_can_access_devices()
     {
         $user = User::first();
@@ -77,7 +76,7 @@ class HasLoginsAndDevicesTest extends TestCase
         $this->assertEquals(3, $user->devices()->count());
     }
 
-    #[Test]
+    /** @test */
     public function it_can_access_devices_with_custom_models()
     {
         $this->config->set('auth-checker.models.device', CustomDevice::class);
@@ -93,7 +92,7 @@ class HasLoginsAndDevicesTest extends TestCase
         $this->config->set('auth-checker.models.device', null);
     }
 
-    #[Test]
+    /** @test */
     public function it_detects_devices()
     {
         $user = User::first();
